@@ -4,45 +4,67 @@ import 'firebase/database'
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyBHUc6Dn7Cwdg9QyVQ3oO5pT3Pk4GgTt8U",
-    authDomain: "expensifycrisest.firebaseapp.com",
-    databaseURL: "https://expensifycrisest.firebaseio.com",
-    projectId: "expensifycrisest",
-    storageBucket: "expensifycrisest.appspot.com",
-    messagingSenderId: "913974537735",
-    appId: "1:913974537735:web:90416d3dd27f0e982044a2",
-    measurementId: "G-EWWE8V7B4Q"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN_URL,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics()
 
   const database = firebase.database();
 
-database.ref('expenses')
-  .once('value')
-  .then((snapshot) => {
-      const expenses = []
+  export { firebase, database as default}
 
-      snapshot.forEach((child) => {
-          expenses.push({
-              id: child.key,
-              ...child.val()
-          })
-      })
-      console.log(expenses);
-  })
 
-  database.ref('expenses').on('value', (snapshot) =>{
-      const expenses = []
-      snapshot.forEach((child) => {
-          expenses.push({
-              id: child.key,
-              ...child.val()
-          })
-      })
-      console.log(expenses);
-  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// database.ref('expenses')
+//   .once('value')
+//   .then((snapshot) => {
+//       const expenses = []
+
+//       snapshot.forEach((child) => {
+//           expenses.push({
+//               id: child.key,
+//               ...child.val()
+//           })
+//       })
+//       console.log(expenses);
+//   })
+
+//   database.ref('expenses').on('value', (snapshot) =>{
+//       const expenses = []
+//       snapshot.forEach((child) => {
+//           expenses.push({
+//               id: child.key,
+//               ...child.val()
+//           })
+//       })
+//       console.log(expenses);
+//  })
 
 //events:
 //  child_removed
