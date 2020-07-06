@@ -18,7 +18,9 @@ import 'firebase/database'
 
   const database = firebase.database();
 
-  export { firebase, database as default}
+  const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+  export { firebase, googleAuthProvider, database as default}
 
 
 
