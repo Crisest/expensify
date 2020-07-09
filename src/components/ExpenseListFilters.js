@@ -17,24 +17,38 @@ class ExpenseListFilters extends React.Component {
     }
     render(){
         return (
-            <div>
-                <input type="text" value={this.props.filters.text} onChange={(e) => {
-                    this.props.dispatch(setFilterText(e.target.value))
-                }}/> 
-                <select 
-                value={this.props.filters.sortBy}
-                onChange={(e) => {
-                    if(e.target.value === 'date'){
-                        this.props.dispatch(sortByDate())
-                    }
-                    else if( e.target.value === 'amount'){
-                        this.props.dispatch(sortByAmount())
-                    }
-                }}>
-                    <option value="date">Date</option>
-                    <option value="amount">Amount</option>
-                </select>
-                <DateRangePicker
+            <div className="container">
+            <div className="input-group">
+                <div className="input-group__item">
+                    <input 
+                    type="text" 
+                    className="text-input" 
+                    value={this.props.filters.text} 
+                    onChange={(e) => {
+                        this.props.dispatch(setFilterText(e.target.value))
+                    }}
+                    placeholder="Search Expenses"
+                    />
+                 </div>
+                <div className="input-group__item">
+                    <select 
+                    value={this.props.filters.sortBy}
+                    onChange={(e) => {
+                        if(e.target.value === 'date'){
+                            this.props.dispatch(sortByDate())
+                        }
+                        else if( e.target.value === 'amount'){
+                            this.props.dispatch(sortByAmount())
+                        }
+                    }}
+                    className="select"
+                    >
+                        <option value="date">Date</option>
+                        <option value="amount">Amount</option>
+                    </select>
+                </div>
+                <div className="input-group__item">
+                    <DateRangePicker
                     startDate={this.props.filters.startDate}
                     endDate={this.props.filters.endDate}
                     onDatesChange={this.onDateChange}
@@ -45,7 +59,9 @@ class ExpenseListFilters extends React.Component {
                     showClearDates={true}
                     startDateId="UniqueID"
                     endDateId="SDS"
-                />
+                    />
+                </div>
+            </div>
             </div>
         )
     }
